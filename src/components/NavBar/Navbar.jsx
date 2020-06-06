@@ -5,12 +5,12 @@ import {
   Typography,
   useScrollTrigger,
   Slide,
-  Switch,
   Zoom,
   Fab,
   makeStyles,
+  IconButton,
 } from "@material-ui/core";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { KeyboardArrowUp, Brightness6Outlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,8 +33,8 @@ function HideOnScroll({ children }) {
 function ScrollTop({ children }) {
   const classes = useStyles();
   const trigger = useScrollTrigger({
-    disableHysteresis: false,
-    threshold: 10,
+    disableHysteresis: true,
+    threshold: 100,
   });
 
   const handleClick = () => {
@@ -57,20 +57,27 @@ export default function Navbar(props) {
   return (
     <>
       <HideOnScroll {...props}>
-        <AppBar>
+        <AppBar color={props.darkState ? "dark" : "primary"}>
           <Toolbar>
             <Typography variant="h6"> Abdul Rashid</Typography>
-            <Switch
-              checked={props.darkState}
-              onChange={props.handleThemeChange}
-            />
+            <IconButton
+              style={{ marginLeft: "auto" }}
+              onClick={props.handleThemeChange}
+            >
+              <Brightness6Outlined style={{ color: "white" }} />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </HideOnScroll>
       <Toolbar id="anchor" />
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
-          <KeyboardArrowUpIcon />
+        <Fab
+          color="secondary"
+          style={{ marginBottom: "3rem" }}
+          size="small"
+          aria-label="scroll back to top"
+        >
+          <KeyboardArrowUp />
         </Fab>
       </ScrollTop>
     </>

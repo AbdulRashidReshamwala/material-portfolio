@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import NavBar from "./components/NavBar/Navbar";
+import BottomNavigation from "@material-ui/core/BottomNavigation";
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import RestoreIcon from "@material-ui/icons/Restore";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
 
 import {
   Container,
@@ -8,12 +13,22 @@ import {
   CssBaseline,
   Typography,
   Link,
+  makeStyles,
 } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  root: {
+    width: 500,
+  },
+});
 
 function App() {
   const [darkState, setDarkState] = useState(true);
 
   const palletType = darkState ? "dark" : "light";
+
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -95,18 +110,53 @@ function App() {
           </Box>
         </Container>
         <div
-          style={{ left: 0, bottom: 0, textAlign: "center", margin: "2rem" }}
+          style={{
+            left: 0,
+            bottom: 0,
+            textAlign: "center",
+            margin: "1rem",
+            marginBottom: "4rem",
+          }}
         >
           <Typography>
-            Made with 💙 and by{" "}
-            <Link href="https://google.com" target="_blank">
-              <Typography display="inline"> Abdul Rashid</Typography>
+            Made with{" "}
+            <span role="img" aria-label="blue heart">
+              💙
+            </span>{" "}
+            and by{" "}
+            <Link
+              href="https://github.com/AbdulRashidReshamwala/material-portfolio"
+              target="_blank"
+            >
+              <Typography display="inline" color="secondary" component="span">
+                {" "}
+                Abdul Rashid
+              </Typography>
             </Link>
           </Typography>
-          <Typography variant="caption">
-            Copy right &copy; All rights reserved{" "}
+          <Typography color="textSecondary" variant="caption">
+            Copyright &copy; 2020 All rights reserved{" "}
           </Typography>
         </div>
+        <BottomNavigation
+          value={value}
+          onChange={(event, newValue) => {
+            console.log(newValue);
+
+            setValue(newValue);
+          }}
+          style={{
+            width: "100%",
+            position: "fixed",
+            bottom: 0,
+          }}
+          showLabels
+          className={classes.root}
+        >
+          <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+          <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+          <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        </BottomNavigation>
       </ThemeProvider>
     </>
   );
