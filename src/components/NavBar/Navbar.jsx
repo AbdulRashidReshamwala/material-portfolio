@@ -9,6 +9,7 @@ import {
   Fab,
   makeStyles,
   IconButton,
+  Button,
 } from "@material-ui/core";
 import { KeyboardArrowUp, Brightness6Outlined } from "@material-ui/icons";
 
@@ -59,7 +60,25 @@ export default function Navbar(props) {
       <HideOnScroll {...props}>
         <AppBar color={props.darkState ? "dark" : "primary"}>
           <Toolbar>
-            <Typography variant="h6"> Abdul Rashid</Typography>
+            <Button
+              variant="flat"
+              color="secondary"
+              startIcon={
+                <span role="img" aria-label="robot">
+                  🤖
+                </span>
+              }
+            >
+              <Typography
+                variant="h6"
+                style={{
+                  fontFamily: "Pacifico, cursive",
+                  color: "white",
+                }}
+              >
+                Abdul Rashid
+              </Typography>
+            </Button>
             <IconButton
               style={{ marginLeft: "auto" }}
               onClick={props.handleThemeChange}
