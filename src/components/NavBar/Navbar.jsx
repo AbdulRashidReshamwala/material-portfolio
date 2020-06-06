@@ -92,7 +92,7 @@ export default function Navbar(props) {
       <ScrollTop {...props}>
         <Fab
           color="secondary"
-          style={{ marginBottom: "3rem" }}
+          style={{ marginBottom: "3.5rem" }}
           size="small"
           aria-label="scroll back to top"
         >
