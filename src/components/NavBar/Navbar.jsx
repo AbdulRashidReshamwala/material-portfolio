@@ -18,6 +18,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     bottom: theme.spacing(2),
     right: theme.spacing(2),
+    postion: "fixed",
+    zIndex: "2147483647",
   },
 }));
 
@@ -60,23 +62,16 @@ export default function Navbar(props) {
       <HideOnScroll {...props}>
         <AppBar color={props.darkState ? "dark" : "primary"}>
           <Toolbar>
-            <Button
-              variant="flat"
-              color="secondary"
-              startIcon={
-                <span role="img" aria-label="robot">
-                  🤖
-                </span>
-              }
-            >
+            <Button variant="flat" color="secondary">
               <Typography
-                variant="h6"
+                variant="h4"
                 style={{
-                  fontFamily: "Pacifico, cursive",
+                  fontFamily: "Comfortaa, cursive",
+                  textTransform: "capitalize",
                   color: "white",
                 }}
               >
-                Abdul Rashid
+                {"🚀 <Abdul/>"}
               </Typography>
             </Button>
             <IconButton
@@ -92,7 +87,9 @@ export default function Navbar(props) {
       <ScrollTop {...props}>
         <Fab
           color="secondary"
-          style={{ marginBottom: "3.5rem" }}
+          style={{
+            marginBottom: "3.5rem",
+          }}
           size="small"
           aria-label="scroll back to top"
         >

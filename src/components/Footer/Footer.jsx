@@ -17,7 +17,7 @@ export default function Footer() {
         <span role="img" aria-label="blue heart">
           💙
         </span>{" "}
-        and by{" "}
+        and {"</>"} by
         <Link
           href="https://github.com/AbdulRashidReshamwala/material-portfolio"
           target="_blank"

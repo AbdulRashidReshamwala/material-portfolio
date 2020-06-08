@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import {
+  Code,
+  ImportantDevices,
+  AlternateEmail,
+  EmojiPeople,
+} from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 
 function BottomNavBar({ history }) {
   const [navIndex, setNavIndex] = useState(0);
-  const pages = ["", "project", "todo"];
+  const pages = ["", "project", "experience", "contact"];
   return (
     <>
       <BottomNavigation
@@ -22,15 +25,15 @@ function BottomNavBar({ history }) {
           marginLeft: "2%",
           marginRight: "2%",
           marginBottom: "12px",
-
           position: "fixed",
           bottom: 0,
         }}
         showLabels
       >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction label="About" icon={<EmojiPeople />} />
+        <BottomNavigationAction label="Projects" icon={<Code />} />
+        <BottomNavigationAction label="Experince" icon={<ImportantDevices />} />
+        <BottomNavigationAction label="Contact" icon={<AlternateEmail />} />
       </BottomNavigation>
     </>
   );
