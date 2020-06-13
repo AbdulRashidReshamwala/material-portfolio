@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -56,13 +57,13 @@ function ScrollTop({ children }) {
   );
 }
 
-export default function Navbar(props) {
+function Navbar(props) {
   return (
     <>
       <HideOnScroll {...props}>
         <AppBar color={props.darkState ? "dark" : "primary"}>
           <Toolbar>
-            <Button>
+            <Button onClick={() => props.history.push("/")}>
               <Typography
                 variant="h4"
                 style={{
@@ -99,3 +100,5 @@ export default function Navbar(props) {
     </>
   );
 }
+
+export default withRouter(Navbar);

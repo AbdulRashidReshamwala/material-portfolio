@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import {
   Container,
   Grid,
@@ -12,8 +13,47 @@ import {
 import { AccountCircle, Title } from "@material-ui/icons";
 import githubLogo from "./Octocat.png";
 import linkedinLogo from "./linkedinLogo.png";
+import youtubeLogo from "./ytlogo.png";
+
+const url = "https://asia-east2-v2-portfolio.cloudfunctions.net/contactForm";
 
 export default function ContactPage() {
+  const [email, setEmail] = useState("");
+  const [title, setTitle] = useState("");
+  const [msg, setMsg] = useState("");
+
+  const submitForm = () => {
+    if (
+      !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      )
+    ) {
+      alert("Invalid Email");
+      return;
+    }
+    if (title.length < 3) {
+      alert("Title too short");
+    }
+    axios
+      .post(url, {
+        email: email,
+        title: title,
+        msg: msg,
+      })
+      .then(
+        () => {
+          setEmail("");
+          setTitle("");
+          setMsg("");
+          alert("Submit Sucessfull");
+        },
+        (error) => {
+          alert("Error Could not submit");
+          console.log(error);
+        }
+      );
+  };
+
   return (
     <Container style={{ marginTop: 24 }}>
       <Paper>
@@ -65,6 +105,19 @@ export default function ContactPage() {
                 </Link>
               </div>
               <Link
+                href="https://www.youtube.com/channel/UCYAyEnZHbSDIenU18KsD3HQ"
+                target="_blank"
+              >
+                <Button variant="contained" style={{ margin: 8 }}>
+                  <img
+                    alt="YouTube Logo"
+                    height="32"
+                    src={youtubeLogo}
+                    style={{ marrginLeft: 6, marrginright: 6 }}
+                  />
+                </Button>
+              </Link>
+              <Link
                 href="https://github.com/AbdulRashidReshamwala"
                 target="_blank"
               >
@@ -78,6 +131,7 @@ export default function ContactPage() {
                   Github
                 </Button>
               </Link>
+
               <Link
                 href="https://www.linkedin.com/in/abdul-rashid-reshamwala-141525181/"
                 target="_blank"
@@ -95,12 +149,7 @@ export default function ContactPage() {
                   href="https://drive.google.com/file/d/1sBT1KCuKiJbOaYgko8EC3rvzp1E9ESKz/view"
                   target="_blank"
                 >
-                  <Button
-                    variant="contained"
-                    style={{ margin: 8 }}
-                    color="secondary"
-                    fullWidth
-                  >
+                  <Button variant="contained" style={{ margin: 8 }} fullWidth>
                     <Typography
                       variant="subtitle1"
                       style={{
@@ -124,7 +173,10 @@ export default function ContactPage() {
                 fullWidth
                 label="Email"
                 id="emailInput"
+                required
+                value={email}
                 style={{ marginTop: "1.2rem" }}
+                onChange={(e) => setEmail(e.target.value.trim())}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -136,9 +188,11 @@ export default function ContactPage() {
               />
               <TextField
                 fullWidth
+                required
                 label="Title"
+                value={title}
                 style={{ marginTop: "1.2rem" }}
-                id="emailInput"
+                onChange={(e) => setTitle(e.target.value.trim())}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -150,10 +204,12 @@ export default function ContactPage() {
               />
               <TextField
                 fullWidth
+                required
                 label="Message"
-                id="emailInput"
+                onChange={(e) => setMsg(e.target.value.trim())}
                 style={{ marginTop: "1.2rem" }}
                 multiline
+                value={msg}
                 rows={5}
                 InputProps={{
                   startAdornment: (
@@ -167,6 +223,7 @@ export default function ContactPage() {
                 variant="contained"
                 fullWidth
                 color="primary"
+                onClick={submitForm}
               >
                 Submit
               </Button>
