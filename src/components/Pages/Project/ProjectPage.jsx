@@ -12,6 +12,7 @@ import {
   CardActions,
   useMediaQuery,
   Tooltip,
+  CircularProgress,
 } from "@material-ui/core";
 
 export default function TitlebarGridList() {
@@ -32,6 +33,11 @@ export default function TitlebarGridList() {
 
   return (
     <Container style={{ marginTop: "2rem" }}>
+      {projects.length < 1 ? (
+        <div style={{ textAlign: "center" }} size="500">
+          <CircularProgress size={100} />
+        </div>
+      ) : null}
       <GridList cols={matches ? 2 : 1} cellHeight={"auto"} spacing={16}>
         {projects.map((p) => (
           <GridListTile key={p.image}>

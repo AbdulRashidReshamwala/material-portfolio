@@ -62,7 +62,7 @@ export default function Navbar(props) {
       <HideOnScroll {...props}>
         <AppBar color={props.darkState ? "dark" : "primary"}>
           <Toolbar>
-            <Button variant="flat" color="secondary">
+            <Button>
               <Typography
                 variant="h4"
                 style={{
