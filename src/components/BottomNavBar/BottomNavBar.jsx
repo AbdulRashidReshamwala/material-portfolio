@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import {
   Code,
   ImportantDevices,
@@ -10,13 +9,17 @@ import {
 import { withRouter } from "react-router-dom";
 
 function BottomNavBar({ history }) {
-  const [navIndex, setNavIndex] = useState(0);
   const pages = ["", "project", "experience", "contact"];
+  const [navIndex, setNavIndex] = useState(
+    pages.indexOf(history.location.pathname.substring(1)) === -1
+      ? 0
+      : pages.indexOf(history.location.pathname.substring(1))
+  );
   return (
     <>
       <BottomNavigation
         value={navIndex}
-        onChange={(event, newValue) => {
+        onChange={(e, newValue) => {
           setNavIndex(newValue);
           history.push(pages[newValue]);
         }}
@@ -32,7 +35,10 @@ function BottomNavBar({ history }) {
       >
         <BottomNavigationAction label="About" icon={<EmojiPeople />} />
         <BottomNavigationAction label="Projects" icon={<Code />} />
-        <BottomNavigationAction label="Experince" icon={<ImportantDevices />} />
+        <BottomNavigationAction
+          label="Experience"
+          icon={<ImportantDevices />}
+        />
         <BottomNavigationAction label="Contact" icon={<AlternateEmail />} />
       </BottomNavigation>
     </>

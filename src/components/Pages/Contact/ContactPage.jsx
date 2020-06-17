@@ -104,19 +104,22 @@ export default function ContactPage() {
                   </Button>
                 </Link>
               </div>
-              <Link
-                href="https://www.youtube.com/channel/UCYAyEnZHbSDIenU18KsD3HQ"
-                target="_blank"
-              >
-                <Button variant="contained" style={{ margin: 8 }}>
-                  <img
-                    alt="YouTube Logo"
-                    height="32"
-                    src={youtubeLogo}
-                    style={{ marrginLeft: 6, marrginright: 6 }}
-                  />
-                </Button>
-              </Link>
+              <div>
+                <Link
+                  href="https://www.youtube.com/channel/UCYAyEnZHbSDIenU18KsD3HQ"
+                  target="_blank"
+                >
+                  <Button variant="contained" style={{ margin: 8 }}>
+                    <img
+                      alt="YouTube Logo"
+                      height="32"
+                      src={youtubeLogo}
+                      style={{ marrginLeft: 6, marrginright: 6 }}
+                    />
+                    YouTube
+                  </Button>
+                </Link>
+              </div>
               <Link
                 href="https://github.com/AbdulRashidReshamwala"
                 target="_blank"
@@ -146,7 +149,7 @@ export default function ContactPage() {
               </Link>
               <div>
                 <Link
-                  href="https://drive.google.com/file/d/1sBT1KCuKiJbOaYgko8EC3rvzp1E9ESKz/view"
+                  href="https://drive.google.com/file/d/1rohIFJ91_qd1fvIJ-o_DzuhInp64NVnv/view?usp=sharing"
                   target="_blank"
                 >
                   <Button variant="contained" style={{ margin: 8 }} fullWidth>
@@ -213,7 +216,9 @@ export default function ContactPage() {
                 rows={5}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
+                    <InputAdornment position="start">
+                      <span></span>
+                    </InputAdornment>
                   ),
                 }}
                 variant="outlined"

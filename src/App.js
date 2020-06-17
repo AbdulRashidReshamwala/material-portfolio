@@ -45,7 +45,7 @@ function App() {
               <ContactPage />
             </Route>
             <Route path="/" exact={true}>
-              <AboutPage />
+              <AboutPage darkState={darkState} />
             </Route>
           </Switch>
           <BottomNavBar />

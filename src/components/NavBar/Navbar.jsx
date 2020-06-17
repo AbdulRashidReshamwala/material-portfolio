@@ -11,8 +11,13 @@ import {
   makeStyles,
   IconButton,
   Button,
+  Tooltip,
 } from "@material-ui/core";
-import { KeyboardArrowUp, Brightness6Outlined } from "@material-ui/icons";
+import {
+  KeyboardArrowUp,
+  Brightness6Outlined,
+  Description,
+} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,12 +80,24 @@ function Navbar(props) {
                 {"🚀 <Abdul/>"}
               </Typography>
             </Button>
-            <IconButton
-              style={{ marginLeft: "auto" }}
-              onClick={props.handleThemeChange}
-            >
-              <Brightness6Outlined style={{ color: "white" }} />
-            </IconButton>
+            <Tooltip title="View Resume">
+              <IconButton
+                style={{ marginLeft: "auto" }}
+                onClick={() =>
+                  window.open(
+                    "https://drive.google.com/file/d/1rohIFJ91_qd1fvIJ-o_DzuhInp64NVnv/view?usp=sharing",
+                    "_blank"
+                  )
+                }
+              >
+                <Description style={{ color: "white" }} />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Toggle Dark Mode">
+              <IconButton onClick={props.handleThemeChange}>
+                <Brightness6Outlined style={{ color: "white" }} />
+              </IconButton>
+            </Tooltip>
           </Toolbar>
         </AppBar>
       </HideOnScroll>

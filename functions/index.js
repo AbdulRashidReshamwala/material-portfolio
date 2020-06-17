@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const fetch = require("node-fetch");
 const cors = require("cors")({ origin: true });
+const nodemailer = require("nodemailer");
 
 require("dotenv").config();
 
@@ -41,7 +42,6 @@ exports.getVideos = functions
             id: videoId[i],
           });
       });
-      response.json(json);
     } catch (error) {
       console.log(error);
     }
@@ -50,10 +50,36 @@ exports.getVideos = functions
 exports.contactForm = functions
   .region("asia-east2")
   .https.onRequest((req, res) => {
-    cors(req, res, () => {
+    cors(req, res, async () => {
       const time = new Date();
       const data = req.body;
       db.collection("contact").add({ ...data, time: time.toString() });
+
+      // let transporter = nodemailer.createTransport({
+      //   host: "smtp.gmail.com",
+      //   port: 465,
+      //   secure: true,
+      //   auth: {
+      //     user: "abdulrreshamwala@gmail.com",
+      //     pass: "zQJ5IO4&Q%fu",
+      //   },
+      // });
+
+      // // send mail with defined transport object
+      // let info = await transporter.sendMail({
+      //   from: '"Nodemailer" <abdulrreshamwala@gmail.com>', // sender address
+      //   to: "ar1242112@gmail.com", // list of receivers
+      //   subject: `New Query`, // Subject line
+      //   text: data.msg,
+      //   html: `<b>New Query</b>
+      //   <h3>From  :${data.email}</h3>
+      //   <h3>Title : ${data.title}</h3>
+      //   <p>${data.msg}</p>
+      //   `, // plain text body
+      // });
+
+      // console.log("Message sent: %s", info.messageId);
+      // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
       res.send("success");
     });
   });

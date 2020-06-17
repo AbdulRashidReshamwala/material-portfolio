@@ -33,6 +33,9 @@ export default function TitlebarGridList() {
 
   return (
     <Container style={{ marginTop: "2rem" }}>
+      <Typography variant="h3" gutterBottom>
+        Projects
+      </Typography>
       {projects.length < 1 ? (
         <div style={{ textAlign: "center" }} size="500">
           <CircularProgress size={100} />

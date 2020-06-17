@@ -1,45 +1,46 @@
 import React from "react";
-import { Box, Container } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import Typed from "react-typed";
 
-export default function AboutPage() {
+export default function AboutPage({ darkState }) {
   return (
-    <>
-      <Box
-        display="flex"
-        alignItems="center"
-        justify="center"
-        style={{ minHeight: "80vh" }}
-      >
-        <div
+    <div className="purple-quartz">
+      <div className="center">
+        <Typography
+          variant="h2"
+          component="h2"
+          color={darkState ? "inherit" : "secondary"}
           style={{
-            position: "absolute",
-            top: 0,
-            left: "50%",
-            right: 0,
-            bottom: "4.5rem",
-            content: "",
-            opacity: ".2",
-            zIndex: "-2",
-            width: "50%",
-            background: "#3e64ff",
+            padding: 12,
+            fontWeight: 500,
+            fontFamily: "Comfortaa, cursive",
+            textTransform: "capitalize",
+            color: darkState ? "white" : "#101010",
           }}
-        ></div>
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: "4.5rem",
-            content: "",
-            opacity: ".2",
-            zIndex: "-2",
-            width: "50%",
-            background: "#3e64ff",
-          }}
-        ></div>
-        <Container></Container>
-      </Box>
-    </>
+          gutterBottom
+        >
+          Hola, I'm Abdul Rashid!
+        </Typography>
+        <Typography variant="h3" align="center">
+          <Typed
+            strings={[
+              "ReactJS ⚛️",
+              "Tensorflow 🤖",
+              "Firebase 🔥",
+              "Dart 🎯",
+              "Blockchain 🔗",
+            ]}
+            typeSpeed={100}
+            backSpeed={60}
+            loop
+            style={{
+              color: darkState ? "white" : "#101010",
+              fontFamily: "Comfortaa, cursive",
+              textTransform: "capitalize",
+            }}
+          />
+        </Typography>
+      </div>
+    </div>
   );
 }
