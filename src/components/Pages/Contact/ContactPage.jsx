@@ -26,7 +26,8 @@ export default function ContactPage() {
     if (
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
         email
-      )
+      ) ||
+      email.length > 256
     ) {
       alert("Invalid Email");
       return;

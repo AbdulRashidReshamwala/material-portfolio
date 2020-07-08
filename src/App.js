@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
+import LazyLoader from "./components/LazyLoader/LazyLoader";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
@@ -9,9 +9,18 @@ import Footer from "./components/Footer/Footer";
 import BottomNavBar from "./components/BottomNavBar/BottomNavBar";
 
 import AboutPage from "./components/Pages/About/AboutPage";
-import ProjectPage from "./components/Pages/Project/ProjectPage";
-import ExperiencePage from "./components/Pages/Experience/ExperiencePage";
-import ContactPage from "./components/Pages/Contact/ContactPage";
+const ExperiencePage = () =>
+  LazyLoader(
+    React.lazy(() => import("./components/Pages/Experience/ExperiencePage"))
+  );
+const ContactPage = () =>
+  LazyLoader(
+    React.lazy(() => import("./components/Pages/Contact/ContactPage"))
+  );
+const ProjectPage = () =>
+  LazyLoader(
+    React.lazy(() => import("./components/Pages/Project/ProjectPage"))
+  );
 
 function App() {
   const [darkState, setDarkState] = useState(true);
